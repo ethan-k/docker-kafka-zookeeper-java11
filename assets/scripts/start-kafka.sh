@@ -37,6 +37,26 @@ if [ ! -z "$NUM_PARTITIONS" ]; then
     sed -r -i "s/#(num.partitions)=(.*)/\1=$NUM_PARTITIONS/g" $KAFKA_HOME/config/server.properties
 fi
 
+if [ ! -z "$LISTENERS" ]; then
+    echo "Listeners: $LISTENERS"
+    sed -r -i "s/#(listeners)=(.*)/\1=$LISTNERS/g" $KAFKA_HOME/config/server.properties
+fi
+
+if [ ! -z "$ADVERTISED_LISTENERS" ]; then
+    echo "Advertised Listeners: $ADVERTISED_LISTENERS"
+    sed -r -i "s/#(advertised.listeners)=(.*)/\1=$ADVERTISED_LISTENERS/g" $KAFKA_HOME/config/server.properties
+fi
+
+if [ ! -z "$LOG_FLUSH_INTERVAL_MESSAGES" ]; then
+    echo "Log Flush Interval Messages: $LOG_FLUSH_INTERVAL_MESSAGES"
+    sed -r -i "s/#(log.flush.interval.messages)=(.*)/\1=$LOG_FLUSH_INTERVAL_MESSAGES/g" $KAFKA_HOME/config/server.properties
+fi
+
+if [ ! -z "$LOG_FLUSH_INTERVAL_MS" ]; then
+    echo "Log Flush Interval MS: $LOG_FLUSH_INTERVAL_MS"
+    sed -r -i "s/#(log.flush.interval.ms)=(.*)/\1=$LOG_FLUSH_INTERVAL_MS/g" $KAFKA_HOME/config/server.properties
+fi
+
 # Set the zookeeper chroot
 if [ ! -z "$ZK_CHROOT" ]; then
     # wait for zookeeper to start up
